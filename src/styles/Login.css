@@ -1,0 +1,72 @@
+.homeBox {
+    width           : 100vw;
+    height          : 100vh;
+    background:url('../assets/loginbg.png') no-repeat;
+    background-size: cover;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+}
+
+.signupBox,
+.signInBox {
+    position: relative;
+}
+
+.signin-form,
+.signup-form {
+    width          : 300px;
+    height         : 450px;
+    display        : flex;
+    flex-direction : column;
+    justify-content: center;
+}
+
+.Pass,
+.Email,
+.User,
+.rePass {
+    position  : relative;
+    text-align: center;
+}
+
+.Uplus,
+.Pplus {
+    position: absolute;
+    left    : 27px;
+    top     : 10px;
+}
+
+.form-control {
+    height       : 44px;
+    width        : 224px;
+    padding      : 0 0 0 40px;
+    border-radius: 15px;
+    border       : 0;
+    outline      : 0;
+    box-shadow   : 0 2px 10px rgb(179, 174, 174);
+}
+
+.btns {
+    width     : 100%;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn {
+    width        : 100px;
+    height       : 32px;
+    border-radius: 10px;
+    border       : 0;
+    outline      : 0;
+    box-shadow   : 0 2px 10px rgb(179, 174, 174);
+}
+
+
+
+.sign {
+    background-color: #FF9A48;
+    color           : white;
+}
+
