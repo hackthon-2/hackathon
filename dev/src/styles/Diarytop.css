@@ -1,0 +1,68 @@
+.diary-top {
+    height       : 7vh;
+    width        : 92%;
+    border-bottom: 1px solid #C87544;
+    position     : relative;
+    opacity      : 5;
+    margin       : 0 4%;
+}
+
+.choose-btn {
+    border          : 0;
+    outline         : 0;
+    position        : absolute;
+    right           : 8px;
+    bottom          : 2px;
+    background-color: transparent;
+}
+
+.show-date {
+    width      : 120px;
+    height     : 38px;
+    position   : absolute;
+    bottom     : 6px;
+    left       : 5%;
+    display    : flex;
+    flex-wrap  : wrap;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.show-day {
+    display            : inline-block;
+    width              : 40px;
+    height             : 100%;
+    /* background-color: black; */
+    text-align         : center;
+    font-size          : 36px;
+    color              : rgb(255, 136, 57);
+    margin-right       : 3px;
+    position           : relative;
+}
+
+.showday {
+    display   : inline-block;
+    margin-top: -10px;
+}
+
+p.show-weekday {
+    display    : inline-block;
+    height     : 32px;
+    color      : rgb(255, 136, 57);
+    font-weight: 600;
+    font-size  : 18px;
+    line-height: 1rem;
+    margin-top : 10px;
+}
+
+.show-month {
+    display       : inline-block;
+    font-size     : 12px;
+    height        : 12px;
+    font-style    : normal;
+    margin-top    : 2px;
+    font-weight   : 200;
+    color         : rgb(136, 136, 136);
+    letter-spacing: 1px;
+    text-indent   : 4px;
+}

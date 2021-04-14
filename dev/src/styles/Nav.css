@@ -1,0 +1,22 @@
+.Nav {
+    position: fixed;
+    bottom  : 0;
+    opacity: 10;
+    background-color: white;
+}
+
+.Navitems {
+    width          : 100vw;
+    display        : flex;
+    justify-content: space-around;
+    align-items    : center;
+}
+
+.Navitem {
+    width          : 25%;
+    height         : 10vh;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    list-style-type: none;
+}

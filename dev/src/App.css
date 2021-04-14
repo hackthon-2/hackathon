@@ -11,20 +11,3 @@ body {
 a{
     text-decoration: none;
 }
-
-.Nav{
-    position: absolute;
-    bottom: 0;
-}
-
-.Navitems {
-    width          : 100vw;
-    height         : 10vh;
-    display        : flex;
-    justify-content: space-around;
-    align-items    : center;
-}
-
-.Navitem{
-    list-style-type: none;
-}

@@ -17,24 +17,19 @@ import {
 } from "./ResuableUtils";
 import "./custom-image-crop.css";
 
-import Login from "./components/Login";
+import Login from "./views/Login";
 import Nav from "./components/Nav";
+import Diary from "./views/Diary";
 // https://os.ncuos.com/api/user/token
 // https://os.ncuos.com/api/user/profile/basic
 export default function App() {
-  const [Username, setUsername] = useState("");
-  const [Password, setPassword] = useState("");
+
   return (
     <Router>
       <div>
         <Switch>
           <Route path="/login">
-            <Login
-              Username={Username}
-              setUsername={setUsername}
-              Password={Password}
-              setPassword={setPassword}
-            />
+            <Login/>
           </Route>
           <Route path="/upload">
             <Upload />
@@ -46,7 +41,7 @@ export default function App() {
             <Topics />
           </Route>
           <Route path="/">
-            <Home />
+            <Diary Link={Link} Nav={Nav} />
           </Route>
         </Switch>
       </div>
@@ -54,14 +49,7 @@ export default function App() {
   );
 }
 
-function Home() {
-  return (
-    <div>
-      123
-      <Nav Link={Link} />
-    </div>
-  );
-}
+
 
 function About() {
   const Title = styled.h1`
