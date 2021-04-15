@@ -5,17 +5,15 @@ import "react-datepicker/dist/react-datepicker.css";
 import datebtnY from "../assets/datebtnY.svg";
 import datebtnT from "../assets/datebtnT.svg";
 import chooseBtn from "../assets/chooseBtn.svg";
-
-function Diarytop({ setIsFilter }) {
+let weekdayArr = ["日", "一", "二", "三", "四", "五", "六"];
+function Diarytop({ setIsFilter, isAdd, setisAdd }) {
   let [startDate, setStartDate] = useState(new Date());
-
   let weekday = startDate.getDay();
   let month = startDate.getMonth() + 1;
   let year = startDate.getFullYear();
   let day = startDate.getDate();
-  let weekdayArr = ["日", "一", "二", "三", "四", "五", "六"];
   let weekDay = "星期" + weekdayArr[weekday];
-  const chooseDate = (date) => {
+  const handleDate = (date) => {
     setIsFilter(false);
     setStartDate(date);
   };
@@ -27,9 +25,13 @@ function Diarytop({ setIsFilter }) {
     startDate = new Date(startDate.setDate(startDate.getDate() + 1));
     setStartDate(startDate);
   };
+  const hanldeBoxs = () => {
+    setIsFilter(!isAdd);
+    setisAdd(!isAdd);
+  };
   return (
     <div className="diary-top">
-      <div>
+      <div className="date-container">
         <button className="datebtn" style={{ left: "10px" }} onClick={lastDay}>
           <img src={datebtnY} alt="上一天"></img>
         </button>
@@ -53,9 +55,9 @@ function Diarytop({ setIsFilter }) {
         selected={startDate}
         onCalendarOpen={() => setIsFilter(true)}
         onCalendarClose={() => setIsFilter(false)}
-        onSelect={chooseDate}
+        onSelect={handleDate}
       />
-      <button className="choose-btn">
+      <button className="choose-btn" onClick={hanldeBoxs}>
         <img src={chooseBtn} alt="choose-btn"></img>
       </button>
     </div>
