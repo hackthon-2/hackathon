@@ -1,18 +1,34 @@
 .Box {
     height          : 200px;
     width           : 48%;
-    border-radius   : 20px;
+    border-radius   : 10px;
     background-color: white;
     margin-bottom   : 10px;
     margin          : 0 1% 10px;
+    overflow        : hidden;
+    text-overflow   : ellipsis;
 }
 
 .header {
-    font-weight: 600;
-    font-size  : 16px;
-    width      : 90%;
-    margin     : 20px auto;
-    color      : rgba(0, 0, 0, 0.507);
+    font-weight       : 600;
+    font-size         : 16px;
+    width             : 90%;
+    margin            : 20px auto;
+    color             : rgba(0, 0, 0, 0.507);
+    display           : -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow          : hidden;
+}
+
+.todotext {
+    display           : inline-block;
+    display           : -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow          : hidden;
+    color             : rgba(0, 0, 0, 0.507);
+
 }
 
 .todoitem {
@@ -23,6 +39,7 @@
     position   : relative;
     display    : flex;
     align-items: center;
+
 }
 
 
@@ -73,10 +90,11 @@ span.check-button {
     content      : "";
     display      : block;
     position     : absolute;
-    width        : 12px;
-    height       : 12px;
+    top          : 1px;
+    width        : 15px;
+    height       : 15px;
     border-radius: 50%;
-    border       : 1px solid #b382f9;
+    border       : 1px solid rgb(255, 136, 57);
 }
 
 
@@ -84,11 +102,11 @@ span.check-button {
     content      : "";
     display      : block;
     position     : absolute;
-    width        : 12px;
-    height       : 12px;
+    width        : 15px;
+    height       : 15px;
     border-radius: 50%;
     transition   : 0.5s;
-    background   : #b382f9;
+    background   : rgb(255, 136, 57);
     transform    : translate(0px, 0px) scale(0.8);
 }
 

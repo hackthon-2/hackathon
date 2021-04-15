@@ -10,11 +10,10 @@ function Box({ header, todoItems }) {
       <h2 className="header">{header}</h2>
       {todoItems.map((todoitem) => {
         const { id, item, isComplete } = todoitem;
-        console.log(id)
         return (
           <div className="todoitem" key={id}>
             <input type="checkbox" />
-            {item}
+            <p className="todotext">{item}</p>
             <span className="check-button">
               <i className={isComplete?"CB":""}></i>
             </span>
