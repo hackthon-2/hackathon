@@ -12,19 +12,37 @@ function Card({
   setTodoItems,
   setIsFilter,
   setIsCard,
+  setQuestion,
+  Question,
+  Text,
+  setText,
+  container,
+  setContainer,
+  Boxs,
+  setBoxs,
 }) {
-  const handleInput = (e) => {
-    console.log(e.target.value);
+  let box = {};
+  const handleInputTodo = (e) => {
     value = e.target.value;
     setValue(value);
   };
+  const handleInputQuestion = (e) => {
+    Question = e.target.value;
+    setQuestion(Question);
+  };
+  const handleInputText = (e) => {
+    Text = e.target.value;
+    setText(Text);
+  };
   const handleKeyUp = (e) => {
     if (e.keyCode !== 13 || value === "") return;
+
     todoItems = [
       ...todoItems,
       { isComplete: false, item: value, id: randomid() },
     ];
     console.log(value);
+    console.log(todoItems.length);
     setTodoItems(todoItems);
     setValue("");
   };
@@ -34,7 +52,7 @@ function Card({
     } else {
       todoItems = [
         ...todoItems,
-        { isComplete: false, value: value, id: randomid() },
+        { isComplete: false, item: value, id: randomid() },
       ];
       setTodoItems(todoItems);
       setValue("");
@@ -62,6 +80,27 @@ function Card({
     setIsFilter(false);
     setIsCard(false);
   };
+  const handleSave = () => {
+    let todayDate = new Date().toISOString().slice(0, 10);
+    if (typeStatus === "待办") {
+      container = { Question, todoItems, Time: todayDate };
+      setContainer(container);
+      box = { Question, todoItems };
+      Boxs.push(box);
+      setBoxs(Boxs);
+      setQuestion("");
+      setTodoItems([]);
+      handleCancel();
+    } else {
+      container = { Question, Text, Time: todayDate };
+      box = { Question, Text };
+      Boxs.push(box);
+      setBoxs(Boxs);
+      setQuestion("");
+      setText("");
+      handleCancel();
+    }
+  };
   if (typeStatus !== "记录")
     return (
       <div className="diary-card">
@@ -77,6 +116,8 @@ function Card({
               type="text"
               className="input-header"
               placeholder="写下一个问题..."
+              value={Question}
+              onChange={handleInputQuestion}
             />
             <button className="type-btn" onClick={() => setTypeStatus("记录")}>
               {typeStatus}
@@ -102,7 +143,7 @@ function Card({
               placeholder="写点什么要做的吧..."
               value={value}
               className="add-todo-body"
-              onChange={handleInput}
+              onChange={handleInputTodo}
               onKeyUp={handleKeyUp}
             />
             <button className="add-btn" onClick={handleBTN}>
@@ -130,7 +171,9 @@ function Card({
           <button className="cancel-footer" onClick={handleCancel}>
             取消
           </button>
-          <button className="save-footer">完成</button>
+          <button className="save-footer" onClick={handleSave}>
+            完成
+          </button>
         </div>
       </div>
     );
@@ -149,6 +192,8 @@ function Card({
             type="text"
             className="input-header"
             placeholder="写下一个问题..."
+            value={Question}
+            onChange={handleInputQuestion}
           />
           <button className="type-btn" onClick={() => setTypeStatus("待办")}>
             {typeStatus}
@@ -156,13 +201,19 @@ function Card({
         </div>
       </div>
       <div className="card-body">
-        <textarea className="input-body"></textarea>
+        <textarea
+          className="input-body"
+          value={Text}
+          onChange={handleInputText}
+        ></textarea>
       </div>
       <div className="card-footer">
         <button className="cancel-footer" onClick={handleCancel}>
           取消
         </button>
-        <button className="save-footer">完成</button>
+        <button className="save-footer" onClick={handleSave}>
+          完成
+        </button>
       </div>
     </div>
   );

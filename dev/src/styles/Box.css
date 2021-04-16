@@ -13,7 +13,7 @@
     font-weight       : 600;
     font-size         : 16px;
     width             : 90%;
-    margin            : 20px auto;
+    margin            : 20px auto 10px;
     color             : rgba(0, 0, 0, 0.507);
     display           : -webkit-box;
     -webkit-box-orient: vertical;
@@ -22,7 +22,6 @@
 }
 
 .todo-text {
-    display           : inline-block;
     display           : -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
@@ -95,11 +94,30 @@ input:checked+span.check-button::after {
     width           : 20px;
     height          : 20px;
     border-radius   : 50%;
-    position: absolute;
-    right: 0;
+    position        : absolute;
+    right           : 0;
 }
 
 .delete::before {
     content: '\2716';
     color  : red;
+}
+
+.text-body {
+    width   : 80%;
+    height  : 120px;
+    margin  : 0 auto;
+    position: relative;
+}
+
+.show-text {
+    height       : 100%;
+    word-wrap    : break-word;
+    width        : 100%;
+    color        : rgba(0, 0, 0, 0.507);
+    font-size    : 12px;
+    display           : -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7;
+    overflow     : hidden;
 }

@@ -2,44 +2,35 @@ import React, { useState } from "react";
 import "../styles/Nav.css";
 import "../styles/Diary.css";
 import Diarytop from "../components/Diarytop";
-import Box from "../components/Box";
+import Todobox from "../components/Todobox";
 import randomid from "randomid";
 import Card from "../components/Card";
+import Textbox from "../components/Textbox";
 
 function Diary(props) {
   const { Link, Nav } = props;
+  //判断box区域是否需要模糊
   const [isFilter, setIsFilter] = useState(false);
+  //用来增加或删除格子（小卡片） 判断出现的时机
   const [isAdd, setisAdd] = useState(false);
+  //用来确认卡片类型
   const [typeStatus, setTypeStatus] = useState("待办");
+  //用来判断卡片出现时机
   const [isCard, setIsCard] = useState(false);
-  // const [todoItems, setTodoItems] = useState([
-  //   {
-  //     id: randomid(),
-  //     item: "图书安神颗粒的哈",
-  //     isComplete: false,
-  //   },
-  //   {
-  //     id: randomid(),
-  //     item: "图书啊实打实健康",
-  //     isComplete: true,
-  //   },
-  // ]);
-  let [todoItems, setTodoItems] = useState([
-    {
-      id: randomid(),
-      item: "图书安神颗粒的哈",
-      isComplete: false,
-    },
-    {
-      id: randomid(),
-      item: "图书啊实打实健康",
-      isComplete: true,
-    },
-  ]);
-  let [value, setValue] = useState("");
+  //卡片标题
+  const [Question, setQuestion] = useState("");
+  //卡片日记文本
+  const [Text, setText] = useState("");
+  //卡片待办输入框的输入内容
+  const [value, setValue] = useState("");
+  //待办的todoItem
+  const [todoItems, setTodoItems] = useState([]);
+  // 每个盒子
+  const [container, setContainer] = useState({});
+  // 所有盒子
   const [Boxs, setBoxs] = useState([
     {
-      header: "我今天去过哪些地方奥i速度较快拉升的卡拉是快乐的哈利斯科",
+      Question: "我今天去过哪些地方奥i速度较快拉升的卡拉是快乐的哈利斯科",
       todoItems: [
         {
           id: randomid(),
@@ -61,40 +52,16 @@ function Diary(props) {
         },
         { id: randomid(), item: "图书", isComplete: true },
         { id: randomid(), item: "图", isComplete: false },
-        ``,
       ],
     },
     {
-      header: "我今天玩过哪些地方",
+      Question: "我今天玩过哪些地方",
       todoItems: [{ id: randomid(), item: "慧源楼", isComplete: false }],
     },
     {
-      header: "我今天吃过哪些地方",
-      todoItems: [{ id: randomid(), item: "三食堂", isComplete: false }],
-    },
-    {
-      header: "我今天吃过哪些地方",
-      todoItems: [{ id: randomid(), item: "三食堂", isComplete: false }],
-    },
-    {
-      header: "我今天吃过哪些地方",
-      todoItems: [{ id: randomid(), item: "三食堂", isComplete: false }],
-    },
-    {
-      header: "我今天吃过哪些地方",
-      todoItems: [{ id: randomid(), item: "三食堂", isComplete: false }],
-    },
-    {
-      header: "我今天吃过哪些地方",
-      todoItems: [{ id: randomid(), item: "三食堂", isComplete: false }],
-    },
-    {
-      header: "我今天吃过哪些地方",
-      todoItems: [{ id: randomid(), item: "三食堂", isComplete: false }],
-    },
-    {
-      header: "我今天吃过哪些地方",
-      todoItems: [{ id: randomid(), item: "三食堂", isComplete: false }],
+      Question: "我今天玩过哪些地方",
+      Text:
+        "            asd asd as撒旦阿萨的阿萨的阿萨的阿萨的阿萨的埃斯打算打算打算     啊实打实打算的撒打算打算打算啊实打实的阿萨的阿三大苏打实打实的埃斯阿萨的 啊实打实的埃斯埃斯大埃斯asklldjasdasdjasghdjkashdlask啊就是快点哈就看啥克里斯蒂拉卡市后打开拉萨回来打卡是海拉克斯的话拉卡市的离开按时艰苦的环境阿喀琉斯的拉卡市的拉卡市和卡拉是刻录大师离开安徽省考虑哈康老师奎拉山口拉伸的卡拉省的看安神颗粒",
     },
   ]);
 
@@ -175,6 +142,14 @@ function Diary(props) {
           setTodoItems={setTodoItems}
           setIsFilter={setIsFilter}
           setIsCard={setIsCard}
+          Question={Question}
+          setQuestion={setQuestion}
+          Text={Text}
+          setText={setText}
+          container={container}
+          setContainer={setContainer}
+          setBoxs={setBoxs}
+          Boxs={Boxs}
         />
       ) : null}
 
@@ -187,13 +162,17 @@ function Diary(props) {
           className={isFilter ? "showDiaryFilter showDiary" : "showDiary"}
         >
           {Boxs.map((box) => {
-            return (
-              <Box
-                header={box.header}
-                key={box.todoItems[0].id}
-                todoItems={box.todoItems}
-              />
-            );
+            if (box.Text === undefined) {
+              return (
+                <Todobox
+                  Question={box.Question}
+                  key={box.todoItems[0].id}
+                  todoItems={box.todoItems}
+                />
+              );
+            } else {
+              return <Textbox Text={box.Text} Question={box.Question} />;
+            }
           })}
         </div>
       </div>

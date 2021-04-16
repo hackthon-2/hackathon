@@ -1,13 +1,10 @@
 import React from "react";
 import "../styles/Box.css";
 
-function Box({ header, todoItems }) {
-  // const { id, item, isComplete } = todoitem;
-  // console.log(cb);
-
+function Todobox({ Question, todoItems }) {
   return (
     <div className="Box">
-      <h2 className="header">{header}</h2>
+      <h2 className="header">{Question}</h2>
       {todoItems.map((todoitem) => {
         const { id, item, isComplete } = todoitem;
         return (
@@ -24,4 +21,4 @@ function Box({ header, todoItems }) {
   );
 }
 
-export default Box;
+export default Todobox;
