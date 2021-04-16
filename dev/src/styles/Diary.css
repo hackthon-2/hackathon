@@ -20,7 +20,7 @@ body {
     right           : 3%;
     border-radius   : 12px;
     z-index         : 10;
-    box-shadow      : 0 0 2px 1px rgb(179, 174, 174);
+    box-shadow      : 1px 1px 3px 1px rgb(179, 174, 174);
 }
 
 .addBox,

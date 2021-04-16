@@ -1,0 +1,131 @@
+.diary-card {
+    max-width       : 80vw;
+    min-width       : 260px;
+    max-height      : 60%;
+    min-height      : 360px;
+    background-color: #fff;
+    position        : fixed;
+    top             : 50%;
+    left            : 50%;
+    transform       : translate(-50%, -50%);
+    z-index         : 10;
+    border-radius   : 12px;
+    border          : 0;
+    box-shadow      : 0 1px 8px 0px #0000002d;
+}
+
+.card-header {
+    width     : 100%;
+    box-sizing: border-box;
+    height    : 50px;
+    box-sizing: border-box;
+    padding   : 15px 5% 0 5%;
+}
+
+.input-header {
+    border   : 0;
+    width    : 80%;
+    height   : 30px;
+    outline  : 0;
+    font-size: 20px;
+    color    : rgb(153, 147, 147);
+}
+
+.input-header::placeholder {
+    font-size  : 22px;
+    color      : rgb(153, 147, 147);
+    text-indent: 2px;
+    font-weight: 600;
+}
+
+.type-btn {
+    width           : 40px;
+    height          : 27px;
+    border-radius   : 10px;
+    background-color: rgb(243, 243, 243);
+    outline         : 0;
+    border          : 0;
+    position        : absolute;
+    bottom          : 7px;
+    right           : 0;
+    font-size       : 12px;
+    color           : #9B9B9B;
+    box-shadow      : 0 1px 3px 1px #0000002d;
+}
+
+.card-body {
+    width   : 90%;
+    height  : 250px;
+    margin  : 10px 5% 0;
+    position: relative;
+}
+
+.input-body {
+    width    : 100%;
+    height   : 100%;
+    border   : 0;
+    outline  : 0;
+    font-size: 16px;
+    color    : rgb(153, 147, 147);
+    resize   : none;
+}
+
+.card-footer {
+    width          : 90%;
+    height         : 50px;
+    margin         : 5px 5% 0;
+    display        : flex;
+    justify-content: space-around;
+}
+
+.cancel-footer,
+.save-footer {
+    width        : 80px;
+    height       : 29px;
+    border-radius: 14px;
+    border       : 0;
+    outline      : 0;
+    font-size    : 14px;
+    font-weight  : 400;
+}
+
+.cancel-footer {
+    color     : #929292;
+    box-shadow: 0 1px 3px 1px #0000002d;
+
+}
+
+.save-footer {
+    background-color: rgb(249, 166, 99);
+    color           : white;
+    box-shadow      : 0 1px 3px 1px #0000002d;
+
+}
+
+.add-todo {
+    height : 32px;
+    width: 90%;
+    margin: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items    : center;
+    border-bottom  : 2px dotted rgb(255, 197, 96);
+
+}
+
+.add-todo-body {
+    width  : 80%;
+    border : none;
+    outline: 0;
+}
+
+.add-todo-body::placeholder {
+    color      : rgb(157, 152, 152);
+    text-indent: 1em;
+}
+
+.add-btn {
+    outline         : 0;
+    border          : 0;
+    background-color: transparent;
+}

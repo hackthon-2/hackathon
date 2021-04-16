@@ -5,8 +5,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import datebtnY from "../assets/datebtnY.svg";
 import datebtnT from "../assets/datebtnT.svg";
 import chooseBtn from "../assets/chooseBtn.svg";
+
 let weekdayArr = ["日", "一", "二", "三", "四", "五", "六"];
-function Diarytop({ setIsFilter, isAdd, setisAdd }) {
+function Diarytop({ setIsFilter, isAdd, setisAdd, isCard }) {
   let [startDate, setStartDate] = useState(new Date());
   let weekday = startDate.getDay();
   let month = startDate.getMonth() + 1;
@@ -26,8 +27,8 @@ function Diarytop({ setIsFilter, isAdd, setisAdd }) {
     setStartDate(startDate);
   };
   const hanldeBoxs = () => {
-    setIsFilter(!isAdd);
-    setisAdd(!isAdd);
+    setIsFilter(true);
+    setisAdd(true)
   };
   return (
     <div className="diary-top">

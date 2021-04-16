@@ -4,11 +4,39 @@ import "../styles/Diary.css";
 import Diarytop from "../components/Diarytop";
 import Box from "../components/Box";
 import randomid from "randomid";
+import Card from "../components/Card";
 
 function Diary(props) {
   const { Link, Nav } = props;
   const [isFilter, setIsFilter] = useState(false);
   const [isAdd, setisAdd] = useState(false);
+  const [typeStatus, setTypeStatus] = useState("待办");
+  const [isCard, setIsCard] = useState(false);
+  // const [todoItems, setTodoItems] = useState([
+  //   {
+  //     id: randomid(),
+  //     item: "图书安神颗粒的哈",
+  //     isComplete: false,
+  //   },
+  //   {
+  //     id: randomid(),
+  //     item: "图书啊实打实健康",
+  //     isComplete: true,
+  //   },
+  // ]);
+  let [todoItems, setTodoItems] = useState([
+    {
+      id: randomid(),
+      item: "图书安神颗粒的哈",
+      isComplete: false,
+    },
+    {
+      id: randomid(),
+      item: "图书啊实打实健康",
+      isComplete: true,
+    },
+  ]);
+  let [value, setValue] = useState("");
   const [Boxs, setBoxs] = useState([
     {
       header: "我今天去过哪些地方奥i速度较快拉升的卡拉是快乐的哈利斯科",
@@ -73,59 +101,83 @@ function Diary(props) {
   return (
     <div className="diaryBox">
       <div>
-        <Diarytop setIsFilter={setIsFilter} setisAdd={setisAdd} isAdd={isAdd} />
+        <Diarytop
+          setIsFilter={setIsFilter}
+          setisAdd={setisAdd}
+          isAdd={isAdd}
+          isCard={isCard}
+        />
       </div>
-      <div>
-        {isAdd ? (
-          <div className="addOrdlt">
-            <div className="addBox">
-              <i className="addicon">
-                <svg
-                  t="1618472843294"
-                  viewBox="0 0 1024 1024"
-                  version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                  p-id="2184"
-                  width="21"
-                  height="15"
-                >
-                  <path
-                    d="M68.266667 460.8m51.2 0l785.066666 0q51.2 0 51.2 51.2l0 0q0 51.2-51.2 51.2l-785.066666 0q-51.2 0-51.2-51.2l0 0q0-51.2 51.2-51.2Z"
-                    fill="#999999"
-                    p-id="2185"
-                  ></path>
-                  <path
-                    d="M460.8 955.733333m0-51.2l0-785.066666q0-51.2 51.2-51.2l0 0q51.2 0 51.2 51.2l0 785.066666q0 51.2-51.2 51.2l0 0q-51.2 0-51.2-51.2Z"
-                    fill="#999999"
-                    p-id="2186"
-                  ></path>
-                </svg>
-              </i>
-              <p className="addText">增加格子</p>
-            </div>
-            <div className="dltBox">
-              <i className="addicon">
-                <svg
-                  t="1618473801180"
-                  viewBox="0 0 1024 1024"
-                  version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                  p-id="2941"
-                  width="21"
-                  height="15"
-                >
-                  <path
-                    d="M903.053 570.75H121.046c-32.391 0-58.649-26.256-58.649-58.647s26.256-58.661 58.649-58.661h782.009c32.406 0 58.649 26.27 58.649 58.661-0.001 32.393-26.245 58.647-58.649 58.647z"
-                    p-id="2942"
-                    fill="#bfbfbf"
-                  ></path>
-                </svg>
-              </i>
-              <p className="dltText">删除格子</p>
-            </div>
+      {isAdd && isFilter ? (
+        <div className="addOrdlt">
+          <div className="addBox">
+            <i className="addicon">
+              <svg
+                t="1618472843294"
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                p-id="2184"
+                width="21"
+                height="15"
+              >
+                <path
+                  d="M68.266667 460.8m51.2 0l785.066666 0q51.2 0 51.2 51.2l0 0q0 51.2-51.2 51.2l-785.066666 0q-51.2 0-51.2-51.2l0 0q0-51.2 51.2-51.2Z"
+                  fill="#999999"
+                  p-id="2185"
+                ></path>
+                <path
+                  d="M460.8 955.733333m0-51.2l0-785.066666q0-51.2 51.2-51.2l0 0q51.2 0 51.2 51.2l0 785.066666q0 51.2-51.2 51.2l0 0q-51.2 0-51.2-51.2Z"
+                  fill="#999999"
+                  p-id="2186"
+                ></path>
+              </svg>
+            </i>
+            <p
+              className="addText"
+              onClick={() => {
+                setIsCard(true);
+                setisAdd(false);
+              }}
+            >
+              增加格子
+            </p>
           </div>
-        ) : null}
-      </div>
+          <div className="dltBox">
+            <i className="addicon">
+              <svg
+                t="1618473801180"
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                p-id="2941"
+                width="21"
+                height="15"
+              >
+                <path
+                  d="M903.053 570.75H121.046c-32.391 0-58.649-26.256-58.649-58.647s26.256-58.661 58.649-58.661h782.009c32.406 0 58.649 26.27 58.649 58.661-0.001 32.393-26.245 58.647-58.649 58.647z"
+                  p-id="2942"
+                  fill="#bfbfbf"
+                ></path>
+              </svg>
+            </i>
+            <p className="dltText">删除格子</p>
+          </div>
+        </div>
+      ) : null}
+      {isCard ? (
+        <Card
+          typeStatus={typeStatus}
+          setTypeStatus={setTypeStatus}
+          value={value}
+          setValue={setValue}
+          todoItems={todoItems}
+          setTodoItems={setTodoItems}
+          setIsFilter={setIsFilter}
+          setIsCard={setIsCard}
+        />
+      ) : null}
+
       <div>
         <div
           onClick={() => {
