@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "../styles/Nav.css";
 import "../styles/Diary/Diary.css";
 import Diarytop from "../components/Diary/Diarytop";
-import randomid from "randomid";
 import Addcard from "../components/Diary/Addcard";
 import axios from "axios";
 import Diarybody from "../components/Diary/Diarybody";
@@ -27,58 +26,28 @@ function Diary(props) {
   const [value, setValue] = useState("");
   //待办的todoItem
   const [todoItems, setTodoItems] = useState([]);
-  // 每个盒子
-  const [container, setContainer] = useState({});
   // 所有盒子
-  const [Boxs, setBoxs] = useState([
-    // {
-    //   question: "我今天去过哪些地方奥i速度较快拉升的卡拉是快乐的哈利斯科",
-    //   todoItems: [
-    //     {
-    //       id: randomid(),
-    //       item:
-    //         "图书安神颗粒的哈斯卡拉等哈看来是打开了是卡拉还是埃斯看到哈桑离开等哈开始了",
-    //       isComplete: false,
-    //     },
-    //     {
-    //       id: randomid(),
-    //       item:
-    //         "图书啊实打实健康大使的卡拉是觉得拉上看看啦当时的卡拉还是拉伸和克拉生的卢卡省的卡拉还是",
-    //       isComplete: true,
-    //     },
-    //     { id: randomid(), item: "图", isComplete: false },
-    //     {
-    //       id: randomid(),
-    //       item: "图书馆阿斯达卡上阿三大苏打实打实 ",
-    //       isComplete: false,
-    //     },
-    //     { id: randomid(), item: "图书", isComplete: true },
-    //     { id: randomid(), item: "图", isComplete: false },
-    //   ],
-    // },
-    // {
-    //   question: "我今天玩过哪些地方",
-    //   todoItems: [{ id: randomid(), item: "慧源楼", isComplete: false }],
-    // },
-    // {
-    //   question: "我今天玩过哪些地方",
-    //   text:
-    //     "            asd asd as撒旦阿萨的阿萨的阿萨的阿萨的阿萨的埃斯打算打算打算     啊实打实打算的撒打算打算打算啊实打实的阿萨的阿三大苏打实打实的埃斯阿萨的 啊实打实的埃斯埃斯大埃斯asklldjasdasdjasghdjkashdlask啊就是快点哈就看啥克里斯蒂拉卡市后打开拉萨回来打卡是海拉克斯的话拉卡市的离开按时艰苦的环境阿喀琉斯的拉卡市的拉卡市和卡拉是刻录大师离开安徽省考虑哈康老师奎拉山口拉伸的卡拉省的看安神颗粒",
-    // },
-  ]);
+  const [Boxs, setBoxs] = useState([]);
+  let BOXS = [];
   useEffect(() => {
     axios({
-      url: "/user/diaryList",
+      url: "/user/todoList",
       method: "get",
     })
       .then((res) => {
-        // res.data.data.forEach((box) => console.log(box));
-        console.log(res.data.data[1]);
-        setBoxs(res.data.data);
+        BOXS = BOXS.concat(res.data.data);
+      })
+      .then(() => {
+        axios({
+          url: "/user/diaryList",
+          method: "get",
+        }).then((res) => {
+          setBoxs(BOXS.concat(res.data.data));
+          console.log(BOXS.concat(res.data.data));
+        });
       })
       .catch((err) => console.log(err));
   }, []);
-  console.log(Boxs);
   return (
     <div className="diaryBox">
       <div>
@@ -89,6 +58,7 @@ function Diary(props) {
           isCard={isCard}
         />
       </div>
+      {/* 右上角卡片 */}
       {isAdd && isFilter ? (
         <div className="addOrdlt">
           <div className="addBox">
@@ -155,6 +125,7 @@ function Diary(props) {
           </div>
         </div>
       ) : null}
+      {/* 中间卡片 */}
       {isCard ? (
         <Addcard
           typeStatus={typeStatus}
@@ -169,12 +140,11 @@ function Diary(props) {
           setQuestion={setQuestion}
           text={text}
           setText={setText}
-          container={container}
-          setContainer={setContainer}
           setBoxs={setBoxs}
           Boxs={Boxs}
         />
       ) : null}
+      {/* 日记展示区 */}
       <Diarybody
         setisAdd={setisAdd}
         setIsFilter={setIsFilter}
@@ -184,7 +154,7 @@ function Diary(props) {
         isFilter={isFilter}
         setBoxs={setBoxs}
       />
-
+      {/* 底部导航栏 */}
       <div style={{ height: "10vh" }}>
         <Nav Link={Link} />
       </div>

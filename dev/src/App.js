@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,7 +7,6 @@ import {
   useRouteMatch,
   useParams,
 } from "react-router-dom";
-import styled from "styled-components";
 import ReactCrop from "react-image-crop";
 import {
   base64StringtoFile,
@@ -24,6 +23,7 @@ import Statistics from "./views/Statistics";
 // https://os.ncuos.com/api/user/token
 // https://os.ncuos.com/api/user/profile/basic
 export default function App() {
+  const [chooseLink, setChooseLink] = useState("/");
   return (
     <Router>
       <div>
@@ -51,11 +51,9 @@ export default function App() {
 
 function Topics() {
   let match = useRouteMatch();
-
   return (
     <div>
       <h2>Topics</h2>
-
       <ul>
         <li>
           <Link to={`${match.url}/components`}>Components</Link>
@@ -65,14 +63,7 @@ function Topics() {
         </li>
       </ul>
 
-      {/* The Topics page has its own <Switch> with more routes
-          that build on the /topics URL path. You can think of the
-          2nd <Route> here as an "index" page for all topics, or
-          the page that is shown when no topic is selected */}
       <Switch>
-        <Route path={`${match.path}/:topicId`}>
-          <Topic />
-        </Route>
         <Route path={match.path}>
           <h3>Please select a topic.</h3>
         </Route>
@@ -82,10 +73,7 @@ function Topics() {
   );
 }
 
-function Topic() {
-  let { topicId } = useParams();
-  return <h3>Requested topic ID: {topicId}</h3>;
-}
+
 
 function Upload() {
   const imageMaxSize = 1000000000; // bytes
@@ -158,7 +146,6 @@ function Upload() {
   };
 
   const handleOnCropChange = (crop) => {
-    console.log(crop);
     setcrop(crop);
   };
   //预览部分
@@ -179,7 +166,6 @@ function Upload() {
 
       // file to be uploaded
       const myNewCroppedFile = base64StringtoFile(imageData64, myFilename);
-      console.log(myNewCroppedFile);
       // download file
       downloadBase64File(imageData64, myFilename);
       handleClearToDefault();
@@ -212,7 +198,6 @@ function Upload() {
           () => {
             // console.log(myFileItemReader.result)
             const myResult = myFileItemReader.result;
-            console.log(myResult);
             setimgSrc(myResult);
             setimgSrcExt(extractImageFileExtensionFromBase64(myResult));
             // setState({

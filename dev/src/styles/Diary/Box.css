@@ -1,20 +1,21 @@
 .Box {
-    height             : 200px;
-    width              : 48%;
-    border-radius      : 10px;
-    background-color   : white;
-    margin-bottom      : 10px;
-    margin             : 0 1% 10px;
-    /* overflow        : hidden; */
-    text-overflow      : ellipsis;
-    position           : relative;
+    box-sizing      : border-box;
+    height          : 190px;
+    width           : 48%;
+    border-radius   : 10px;
+    background-color: white;
+    margin-bottom   : 10px;
+    margin          : 0 1% 10px;
+    overflow        : hidden;
+    text-overflow   : ellipsis;
+    position        : relative;
 }
 
 .header {
     font-weight       : 600;
     font-size         : 16px;
     width             : 90%;
-    margin            : 20px auto 10px;
+    margin            : 20px auto 0px;
     color             : rgba(0, 0, 0, 0.507);
     display           : -webkit-box;
     -webkit-box-orient: vertical;
@@ -35,7 +36,7 @@
     font-weight: 400;
     font-size  : 12px;
     width      : 84%;
-    margin     : 20px auto;
+    margin     : 15px auto 0px;
     position   : relative;
     display    : flex;
     align-items: center;
@@ -107,7 +108,7 @@ input:checked+span.check-button::after {
 .text-body {
     width   : 80%;
     height  : 120px;
-    margin  : 0 auto;
+    margin  : 7px auto 0 ;
     position: relative;
 }
 

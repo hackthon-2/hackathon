@@ -5,7 +5,7 @@ import "./App.css";
 import axios from "axios";
 axios.defaults.baseURL = "https://api.onesnowwarrior.cn:8000/api";
 let AUTH_TOKEN =
-  "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MiwiVXNlcm5hbWUiOiI3Nzc3Nzc3IiwiZXhwIjoxNjE4NjQ3MTc0LCJpYXQiOjE2MTg2Mzk5NzQsImlzcyI6Inh6aCIsIm5iZiI6MTYxODYzODk3NH0.AX2jvQMdNKWSyKk5-XyqEDCEtCmYtsZzvd4w9uydda2IZ32LcFGXuzWrJDcSQPUUHR-z5eeQffQSgLhk3nxwg-hho1gilvUIyLqn5gEjh9x630p5E-DMelS904zRi3QzuXqdVvRl3jVZK5PzPSxAdwG3yyRAJFhxdMLgO2G2jPU";
+"Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MSwiVXNlcm5hbWUiOiJhZG1pbjEyMyIsImV4cCI6MTYxODY2NzkzNSwiaWF0IjoxNjE4NjYwNzM1LCJpc3MiOiJ4emgiLCJuYmYiOjE2MTg2NTk3MzV9.rfbMfToI19R_dFpEl8JWF9DqpymSzI4w0EHrpMJ7KYglrnhMQNaiaMQhN_ZcjnoJpyPs35VyIcSKOIMtCX44zg51yKaOYKh2_QyL9G3FhVghJ72xQdJ5fwh6DrNrZaIoe_TzgYln44CZrUGS6xHO_-KtFp1tyULnudJGnDQO1do";
 axios.defaults.headers.common["Authorization"] = AUTH_TOKEN;
 
 ReactDOM.render(<App />, document.getElementById("root"));

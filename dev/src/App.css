@@ -1,14 +1,24 @@
+@font-face {
+    font-family: "PingFang Regular";
+    src        : url('./font/PingFang Regular.ttf');
+}
+
 * {
     margin : 0;
     padding: 0;
 }
 
+
 body {
-    width : 100vw;
-    height: 100vh;
+    width      : 100vw;
+    height     : 100vh;
     caret-color: #81BCFF;
+    font-family: "PingFang Regular";
+    background: url("./assets/diarybg.jpg") no-repeat fixed;
+    background-position: center;
+    background-size: cover;
 }
 
-a{
+a {
     text-decoration: none;
 }

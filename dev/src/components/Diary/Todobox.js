@@ -1,7 +1,19 @@
 import React from "react";
 import "../../styles/Diary/Box.css";
+import axios from "axios";
 
-function Todobox({ question, todoItems, isDlt }) {
+function Todobox({ question, todoItems, isDlt, id, setBoxs, Boxs }) {
+  const handleDeleteBox = () => {
+    axios({
+      url: "/user/todoDeletion?todoID=" + id,
+      method: "delete",
+    })
+      .then((res) => {
+        Boxs = Boxs.filter((box) => box.id !== id);
+        setBoxs(Boxs);
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="Box">
       <h2 className="header">{question}</h2>
@@ -17,7 +29,11 @@ function Todobox({ question, todoItems, isDlt }) {
           </div>
         );
       })}
-      <button className="delete-box" style={isDlt ? null : { display: "none" }}>
+      <button
+        onClick={handleDeleteBox}
+        className="delete-box"
+        style={isDlt ? null : { display: "none" }}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="13.044"

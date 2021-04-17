@@ -2,21 +2,16 @@ import axios from "axios";
 import React from "react";
 import "../../styles/Diary/Box.css";
 
-function Textbox({ question, text, id, setBoxs, isDlt }) {
+function Textbox({ question, text, id, setBoxs, isDlt, Boxs }) {
   const handleDeleteBox = () => {
     axios({
       url: "/user/diaryDeletion?diaryID=" + id,
       method: "delete",
     })
-      .then((res) =>
-        axios({
-          url: "/user/diaryList",
-          method: "get",
-        }).then((res) => {
-          // res.data.data.forEach((box) => console.log(box));
-          setBoxs(res.data.data);
-        })
-      )
+      .then((res) => {
+        Boxs = Boxs.filter((box) => box.id !== id);
+        setBoxs(Boxs);
+      })
       .catch((err) => console.log(err));
   };
   return (
@@ -25,18 +20,6 @@ function Textbox({ question, text, id, setBoxs, isDlt }) {
       <div className="text-body">
         <p className="show-text">{text}</p>
       </div>
-      {/* {todoItems.map((todoitem) => {
-        const { id, item, isComplete } = todoitem;
-        return (
-          <div className="todo-item" key={id}>
-            <input type="checkbox" />
-            <p className="todo-text">{item}</p>
-            <span className="check-button">
-              <i className={isComplete?"CB":""}></i>
-            </span>
-          </div>
-        );
-      })} */}
       <button
         className="delete-box"
         onClick={handleDeleteBox}

@@ -11,14 +11,13 @@ function Diarybody({
   isFilter,
   setBoxs,
 }) {
-  console.log(Boxs);
   return (
     <div>
       <div
         onClick={() => {
           setisAdd(false);
           setIsFilter(false);
-          setIsDlt(false)
+          setIsDlt(false);
         }}
         className={isFilter ? "showDiaryFilter showDiary" : "showDiary"}
       >
@@ -26,10 +25,13 @@ function Diarybody({
           if (box.text === undefined) {
             return (
               <Todobox
-                question={box.question}
-                key={box.todoItems[0].id}
+                question={box.header}
+                key={box.id}
                 todoItems={box.todoItems}
                 isDlt={isDlt}
+                id={box.id}
+                setBoxs={setBoxs}
+                Boxs={Boxs}
               />
             );
           } else {
@@ -41,6 +43,7 @@ function Diarybody({
                 question={box.question}
                 setBoxs={setBoxs}
                 isDlt={isDlt}
+                Boxs={Boxs}
               />
             );
           }

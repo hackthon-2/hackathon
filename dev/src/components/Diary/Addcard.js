@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../styles/Diary/Card.css";
 import randomid from "randomid";
 import Todo from "./Todo";
 import axios from "axios";
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 
 function Card({
   setTypeStatus,
@@ -18,12 +18,9 @@ function Card({
   question,
   text,
   setText,
-  container,
-  setContainer,
   Boxs,
   setBoxs,
 }) {
-  let box = {};
   const handleInputTodo = (e) => {
     value = e.target.value;
     setValue(value);
@@ -43,8 +40,6 @@ function Card({
       ...todoItems,
       { isComplete: false, item: value, id: randomid() },
     ];
-    console.log(value);
-    console.log(todoItems.length);
     setTodoItems(todoItems);
     setValue("");
   };
@@ -65,7 +60,6 @@ function Card({
     setTodoItems(Ntodos);
   };
   const handleCheck = (id) => {
-    console.log(id);
     setTodoItems(
       todoItems.map((todo) => {
         if (todo.id === id) {
@@ -83,23 +77,34 @@ function Card({
     setIsCard(false);
   };
   const handleSave = () => {
-    let todayDate = dayjs().format('YYYY-MM-DD');
-    console.log(todayDate);
+    let todayDate = dayjs().format("YYYY-MM-DD");
     if (typeStatus === "待办") {
-      container = { question, todoItems, Time: todayDate };
-      setContainer(container);
-      box = { question, todoItems };
-      Boxs.push(box);
-      setBoxs(Boxs);
-      setQuestion("");
-      setTodoItems([]);
-      handleCancel();
+      let dataTodo = {
+        header: question,
+        todoItems,
+        time: todayDate,
+      };
+      axios({
+        url: "/user/todoCreation",
+        method: "post",
+        data: JSON.stringify(dataTodo),
+        headers: { "Content-Type": "application/json" },
+      }).then((res) => {
+        axios({
+          url: "/user/todoList",
+          method: "get",
+        })
+          .then((res) => {
+            Boxs.push(res.data.data)
+            setBoxs(Boxs);
+          })
+          .catch((err) => console.log(err));
+      });
     } else {
       let urlencoded = new URLSearchParams();
       urlencoded.append("question", question);
       urlencoded.append("text", text);
       urlencoded.append("time", todayDate);
-      container = { question, text, Time: todayDate };
       axios({
         url: "/user/diaryCreation",
         method: "post",
@@ -110,16 +115,17 @@ function Card({
           url: "/user/diaryList",
           method: "get",
         }).then((res) => {
+          Boxs.push(res.data.data)
           // res.data.data.forEach((box) => console.log(box));
-          setBoxs(res.data.data);
+          setBoxs(Boxs);
         });
       });
       // Boxs.push(box);
-      setBoxs(Boxs);
-      setQuestion("");
-      setText("");
-      handleCancel();
+      // setBoxs(Boxs);
     }
+    setQuestion("");
+    setText("");
+    handleCancel();
   };
   if (typeStatus !== "记录")
     return (
