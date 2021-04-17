@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@antv/g2": "^4.1.14",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "animate.css": "^4.1.1",
     "axios": "^0.21.1",
+    "dayjs": "^1.10.4",
+    "inter-ui": "^3.18.0",
     "randomid": "^1.1.0",
     "react": "^17.0.2",
     "react-datepicker": "^3.7.0",
@@ -16,6 +19,7 @@
     "react-image-crop": "^8.6.6",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "recharts": "^2.0.9",
     "styled-components": "^5.2.3",
     "web-vitals": "^1.0.1"
   },

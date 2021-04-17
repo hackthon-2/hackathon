@@ -1,11 +1,11 @@
 .homeBox {
-    width           : 100vw;
-    height          : 100vh;
-    background:url('../assets/loginbg.png') no-repeat;
+    width          : 100vw;
+    height         : 100vh;
+    background     : url('../assets/loginbg.png') no-repeat;
     background-size: cover;
-    display         : flex;
-    justify-content : center;
-    align-items     : center;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
 }
 
 .signupBox,
@@ -48,9 +48,9 @@
 }
 
 .btns {
-    width     : 100%;
-    margin-top: 40px;
-    display: flex;
+    width          : 100%;
+    margin-top     : 40px;
+    display        : flex;
     justify-content: space-around;
 }
 
@@ -69,4 +69,3 @@
     background-color: #FF9A48;
     color           : white;
 }
-

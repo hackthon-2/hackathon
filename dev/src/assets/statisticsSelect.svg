@@ -1,0 +1,9 @@
+<svg id="组件_20_1" data-name="组件 20 – 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="9" viewBox="0 0 12 9">
+    <defs>
+        <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#ffd8ba"/>
+            <stop offset="1" stop-color="#ff723d"/>
+        </linearGradient>
+    </defs>
+    <path id="多边形_2" data-name="多边形 2" d="M5.168,1.248a1,1,0,0,1,1.664,0l4.131,6.2A1,1,0,0,1,10.131,9H1.869a1,1,0,0,1-.832-1.555Z" transform="translate(12 9) rotate(180)" fill="url(#linear-gradient)"/>
+</svg>

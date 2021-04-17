@@ -14,7 +14,7 @@ function Login(props) {
     reset,
   } = useForm();
   const [Status, setStatus] = useState(true);
-  
+
   // const handleInputUser = (e) => {
   //   setUsername(e.target.value);
   // };
@@ -50,7 +50,7 @@ function Login(props) {
     urlencoded.append("email", email);
     axios({
       method: "post",
-      url: "http://api.onesnowwarrior.cn:8000/api/auth/registration",
+      url: "/auth/registration",
       data: urlencoded,
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
     })
@@ -73,7 +73,7 @@ function Login(props) {
     urlencoded.append("password", password);
     axios({
       method: "post",
-      url: "http://api.onesnowwarrior.cn:8000/api/auth/login",
+      url: "/auth/login",
       data: urlencoded,
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
     })

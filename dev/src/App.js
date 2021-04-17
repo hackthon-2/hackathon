@@ -16,26 +16,26 @@ import {
   image64toCanvasRef,
 } from "./ResuableUtils";
 import "./custom-image-crop.css";
-
+import "inter-ui/inter.css";
 import Login from "./views/Login";
 import Nav from "./components/Nav";
 import Diary from "./views/Diary";
+import Statistics from "./views/Statistics";
 // https://os.ncuos.com/api/user/token
 // https://os.ncuos.com/api/user/profile/basic
 export default function App() {
-
   return (
     <Router>
       <div>
         <Switch>
           <Route path="/login">
-            <Login/>
+            <Login />
           </Route>
           <Route path="/upload">
             <Upload />
           </Route>
-          <Route path="/about">
-            <About />
+          <Route path="/statistics">
+            <Statistics Link={Link} Nav={Nav} />
           </Route>
           <Route path="/topics">
             <Topics />
@@ -46,35 +46,6 @@ export default function App() {
         </Switch>
       </div>
     </Router>
-  );
-}
-
-
-
-function About() {
-  const Title = styled.h1`
-    font-size: 1.5em;
-    text-align: center;
-    color: palevioletred;
-  `;
-
-  // Create a Wrapper component that'll render a <section> tag with some styles
-  const Wrapper = styled.section`
-    background: papayawhip;
-  `;
-  const Description = styled.p`
-    font-size: 15px;
-    color: blue;
-    text-align: center;
-  `;
-
-  // Use Title and Wrapper like any other React component – except they're styled!
-  return (
-    <Wrapper>
-      <Title>Hello World!</Title>
-      <Description>ajksghdaksjgvfjkasg</Description>
-      <Nav Link={Link} />
-    </Wrapper>
   );
 }
 

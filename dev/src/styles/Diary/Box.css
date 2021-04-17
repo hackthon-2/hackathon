@@ -1,0 +1,145 @@
+.Box {
+    height             : 200px;
+    width              : 48%;
+    border-radius      : 10px;
+    background-color   : white;
+    margin-bottom      : 10px;
+    margin             : 0 1% 10px;
+    /* overflow        : hidden; */
+    text-overflow      : ellipsis;
+    position           : relative;
+}
+
+.header {
+    font-weight       : 600;
+    font-size         : 16px;
+    width             : 90%;
+    margin            : 20px auto 10px;
+    color             : rgba(0, 0, 0, 0.507);
+    display           : -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow          : hidden;
+}
+
+.todo-text {
+    display           : -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow          : hidden;
+    color             : rgba(0, 0, 0, 0.507);
+
+}
+
+.todo-item {
+    font-weight: 400;
+    font-size  : 12px;
+    width      : 84%;
+    margin     : 20px auto;
+    position   : relative;
+    display    : flex;
+    align-items: center;
+}
+
+.todo-item .done {
+    text-decoration: line-through;
+    font-style     : italic;
+}
+
+
+input[type='checkbox'] {
+    cursor      : pointer;
+    margin-right: 8px;
+    opacity     : 0;
+}
+
+.react-datepicker__input-container input {
+    opacity: 0;
+}
+
+span.check-button {
+    content      : "";
+    display      : block;
+    position     : absolute;
+    top          : 1px;
+    width        : 15px;
+    height       : 15px;
+    border-radius: 50%;
+    border       : 1px solid rgb(255, 136, 57);
+}
+
+
+.CB {
+    content      : "";
+    display      : block;
+    position     : absolute;
+    width        : 15px;
+    height       : 15px;
+    border-radius: 50%;
+    transition   : 0.5s;
+    background   : rgb(255, 136, 57);
+    transform    : translate(0px, 0px) scale(0.8);
+}
+
+input:checked+span.check-button::after {
+    opacity: 1;
+}
+
+.delete {
+    content         : "";
+    border          : 0;
+    /* border       : 1px solid #b382f9; */
+    background-color: transparent;
+    outline         : 0;
+    cursor          : pointer;
+    width           : 20px;
+    height          : 20px;
+    border-radius   : 50%;
+    position        : absolute;
+    right           : 0;
+}
+
+.delete::before {
+    content: '\2716';
+    color  : red;
+}
+
+.text-body {
+    width   : 80%;
+    height  : 120px;
+    margin  : 0 auto;
+    position: relative;
+}
+
+.show-text {
+    height            : 100%;
+    word-wrap         : break-word;
+    width             : 100%;
+    color             : rgba(0, 0, 0, 0.507);
+    font-size         : 12px;
+    display           : -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7;
+    overflow          : hidden;
+}
+
+.delete-box {
+    width           : 26px;
+    height          : 26px;
+    position        : absolute;
+    transform       : translate(20%, -20%);
+    top             : 0;
+    right           : 0;
+    border-radius   : 50%;
+    border          : 0;
+    outline         : 0;
+    background-color: rgb(197, 197, 197);
+    z-index         : 10;
+}
+
+.delete-box-svg {
+    position : absolute;
+    right    : 50%;
+    top      : 0%;
+    transform: translate(50%, 50%);
+}

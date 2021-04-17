@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Nav.css";
-import "../styles/Diary.css";
-import Diarytop from "../components/Diarytop";
-import Todobox from "../components/Todobox";
+import "../styles/Diary/Diary.css";
+import Diarytop from "../components/Diary/Diarytop";
 import randomid from "randomid";
-import Card from "../components/Card";
-import Textbox from "../components/Textbox";
+import Addcard from "../components/Diary/Addcard";
+import axios from "axios";
+import Diarybody from "../components/Diary/Diarybody";
 
 function Diary(props) {
   const { Link, Nav } = props;
@@ -13,14 +13,16 @@ function Diary(props) {
   const [isFilter, setIsFilter] = useState(false);
   //用来增加或删除格子（小卡片） 判断出现的时机
   const [isAdd, setisAdd] = useState(false);
+  // 判断是否要出现删除box按钮
+  const [isDlt, setIsDlt] = useState(false);
   //用来确认卡片类型
   const [typeStatus, setTypeStatus] = useState("待办");
   //用来判断卡片出现时机
   const [isCard, setIsCard] = useState(false);
   //卡片标题
-  const [Question, setQuestion] = useState("");
+  const [question, setQuestion] = useState("");
   //卡片日记文本
-  const [Text, setText] = useState("");
+  const [text, setText] = useState("");
   //卡片待办输入框的输入内容
   const [value, setValue] = useState("");
   //待办的todoItem
@@ -29,42 +31,54 @@ function Diary(props) {
   const [container, setContainer] = useState({});
   // 所有盒子
   const [Boxs, setBoxs] = useState([
-    {
-      Question: "我今天去过哪些地方奥i速度较快拉升的卡拉是快乐的哈利斯科",
-      todoItems: [
-        {
-          id: randomid(),
-          item:
-            "图书安神颗粒的哈斯卡拉等哈看来是打开了是卡拉还是埃斯看到哈桑离开等哈开始了",
-          isComplete: false,
-        },
-        {
-          id: randomid(),
-          item:
-            "图书啊实打实健康大使的卡拉是觉得拉上看看啦当时的卡拉还是拉伸和克拉生的卢卡省的卡拉还是",
-          isComplete: true,
-        },
-        { id: randomid(), item: "图", isComplete: false },
-        {
-          id: randomid(),
-          item: "图书馆阿斯达卡上阿三大苏打实打实 ",
-          isComplete: false,
-        },
-        { id: randomid(), item: "图书", isComplete: true },
-        { id: randomid(), item: "图", isComplete: false },
-      ],
-    },
-    {
-      Question: "我今天玩过哪些地方",
-      todoItems: [{ id: randomid(), item: "慧源楼", isComplete: false }],
-    },
-    {
-      Question: "我今天玩过哪些地方",
-      Text:
-        "            asd asd as撒旦阿萨的阿萨的阿萨的阿萨的阿萨的埃斯打算打算打算     啊实打实打算的撒打算打算打算啊实打实的阿萨的阿三大苏打实打实的埃斯阿萨的 啊实打实的埃斯埃斯大埃斯asklldjasdasdjasghdjkashdlask啊就是快点哈就看啥克里斯蒂拉卡市后打开拉萨回来打卡是海拉克斯的话拉卡市的离开按时艰苦的环境阿喀琉斯的拉卡市的拉卡市和卡拉是刻录大师离开安徽省考虑哈康老师奎拉山口拉伸的卡拉省的看安神颗粒",
-    },
+    // {
+    //   question: "我今天去过哪些地方奥i速度较快拉升的卡拉是快乐的哈利斯科",
+    //   todoItems: [
+    //     {
+    //       id: randomid(),
+    //       item:
+    //         "图书安神颗粒的哈斯卡拉等哈看来是打开了是卡拉还是埃斯看到哈桑离开等哈开始了",
+    //       isComplete: false,
+    //     },
+    //     {
+    //       id: randomid(),
+    //       item:
+    //         "图书啊实打实健康大使的卡拉是觉得拉上看看啦当时的卡拉还是拉伸和克拉生的卢卡省的卡拉还是",
+    //       isComplete: true,
+    //     },
+    //     { id: randomid(), item: "图", isComplete: false },
+    //     {
+    //       id: randomid(),
+    //       item: "图书馆阿斯达卡上阿三大苏打实打实 ",
+    //       isComplete: false,
+    //     },
+    //     { id: randomid(), item: "图书", isComplete: true },
+    //     { id: randomid(), item: "图", isComplete: false },
+    //   ],
+    // },
+    // {
+    //   question: "我今天玩过哪些地方",
+    //   todoItems: [{ id: randomid(), item: "慧源楼", isComplete: false }],
+    // },
+    // {
+    //   question: "我今天玩过哪些地方",
+    //   text:
+    //     "            asd asd as撒旦阿萨的阿萨的阿萨的阿萨的阿萨的埃斯打算打算打算     啊实打实打算的撒打算打算打算啊实打实的阿萨的阿三大苏打实打实的埃斯阿萨的 啊实打实的埃斯埃斯大埃斯asklldjasdasdjasghdjkashdlask啊就是快点哈就看啥克里斯蒂拉卡市后打开拉萨回来打卡是海拉克斯的话拉卡市的离开按时艰苦的环境阿喀琉斯的拉卡市的拉卡市和卡拉是刻录大师离开安徽省考虑哈康老师奎拉山口拉伸的卡拉省的看安神颗粒",
+    // },
   ]);
-
+  useEffect(() => {
+    axios({
+      url: "/user/diaryList",
+      method: "get",
+    })
+      .then((res) => {
+        // res.data.data.forEach((box) => console.log(box));
+        console.log(res.data.data[1]);
+        setBoxs(res.data.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  console.log(Boxs);
   return (
     <div className="diaryBox">
       <div>
@@ -128,12 +142,21 @@ function Diary(props) {
                 ></path>
               </svg>
             </i>
-            <p className="dltText">删除格子</p>
+            <p
+              className="dltText"
+              onClick={() => {
+                setIsDlt(true);
+                setisAdd(false);
+                setIsFilter(false);
+              }}
+            >
+              删除格子
+            </p>
           </div>
         </div>
       ) : null}
       {isCard ? (
-        <Card
+        <Addcard
           typeStatus={typeStatus}
           setTypeStatus={setTypeStatus}
           value={value}
@@ -142,9 +165,9 @@ function Diary(props) {
           setTodoItems={setTodoItems}
           setIsFilter={setIsFilter}
           setIsCard={setIsCard}
-          Question={Question}
+          question={question}
           setQuestion={setQuestion}
-          Text={Text}
+          text={text}
           setText={setText}
           container={container}
           setContainer={setContainer}
@@ -152,30 +175,16 @@ function Diary(props) {
           Boxs={Boxs}
         />
       ) : null}
+      <Diarybody
+        setisAdd={setisAdd}
+        setIsFilter={setIsFilter}
+        setIsDlt={setIsDlt}
+        Boxs={Boxs}
+        isDlt={isDlt}
+        isFilter={isFilter}
+        setBoxs={setBoxs}
+      />
 
-      <div>
-        <div
-          onClick={() => {
-            setisAdd(false);
-            setIsFilter(false);
-          }}
-          className={isFilter ? "showDiaryFilter showDiary" : "showDiary"}
-        >
-          {Boxs.map((box) => {
-            if (box.Text === undefined) {
-              return (
-                <Todobox
-                  Question={box.Question}
-                  key={box.todoItems[0].id}
-                  todoItems={box.todoItems}
-                />
-              );
-            } else {
-              return <Textbox Text={box.Text} Question={box.Question} />;
-            }
-          })}
-        </div>
-      </div>
       <div style={{ height: "10vh" }}>
         <Nav Link={Link} />
       </div>
