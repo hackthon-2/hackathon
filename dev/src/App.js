@@ -5,7 +5,6 @@ import {
   Route,
   Link,
   useRouteMatch,
-  useParams,
 } from "react-router-dom";
 import ReactCrop from "react-image-crop";
 import {
@@ -23,7 +22,6 @@ import Statistics from "./views/Statistics";
 // https://os.ncuos.com/api/user/token
 // https://os.ncuos.com/api/user/profile/basic
 export default function App() {
-  const [chooseLink, setChooseLink] = useState("/");
   return (
     <Router>
       <div>

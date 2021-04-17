@@ -1,14 +1,18 @@
-@font-face {
+/* @font-face {
     font-family: "PingFang Regular";
     src        : url('../../font/PingFang Regular.ttf');
 }
 
 body {
     font-family        : "PingFang Regular";
-}
+} */
 
 .diaryBox {
-    width: 100vw;
+    width              : 100vw;
+    height             : 199vh;
+    background         : url("../../assets/diarybg.jpg") no-repeat fixed;
+    background-position: center;
+    background-size    : cover;
 }
 
 .addOrdlt {

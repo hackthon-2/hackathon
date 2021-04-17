@@ -20,7 +20,14 @@ function Statistics(props) {
     });
   });
   return (
-    <>
+    <div
+      style={{
+        width: "100vw",
+        height: "100vh",
+        padding: "20px 0 0 0",
+        backgroundColor: "#FAF9F9",
+      }}
+    >
       <div className="statistics-box">
         <div className="statistics-top">
           <h2>统计</h2>
@@ -42,7 +49,7 @@ function Statistics(props) {
       <div style={{ height: "10vh" }}>
         <Nav Link={Link} />
       </div>
-    </>
+    </div>
   );
 }
 

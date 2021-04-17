@@ -5,6 +5,7 @@ import Diarytop from "../components/Diary/Diarytop";
 import Addcard from "../components/Diary/Addcard";
 import axios from "axios";
 import Diarybody from "../components/Diary/Diarybody";
+import 'animate.css';
 
 function Diary(props) {
   const { Link, Nav } = props;
@@ -49,7 +50,7 @@ function Diary(props) {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <div className="diaryBox">
+    <div className="diaryBox" >
       <div>
         <Diarytop
           setIsFilter={setIsFilter}
@@ -144,6 +145,9 @@ function Diary(props) {
           Boxs={Boxs}
         />
       ) : null}
+      {/* {axios.({
+        url:""
+      })} */}
       {/* 日记展示区 */}
       <Diarybody
         setisAdd={setisAdd}

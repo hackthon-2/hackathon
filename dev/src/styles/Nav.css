@@ -1,8 +1,9 @@
 .Nav {
-    position: fixed;
-    bottom  : 0;
-    opacity: 10;
-    background-color: white;
+    position        : fixed;
+    bottom          : 0;
+    opacity         : 10;
+    background-color: #FFFFFF;
+    box-shadow      : 0 0 10px 1px #4444441f;
 }
 
 .Navitems {

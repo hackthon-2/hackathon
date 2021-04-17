@@ -14,9 +14,7 @@ body {
     height     : 100vh;
     caret-color: #81BCFF;
     font-family: "PingFang Regular";
-    background: url("./assets/diarybg.jpg") no-repeat fixed;
-    background-position: center;
-    background-size: cover;
+
 }
 
 a {
