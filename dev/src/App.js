@@ -19,18 +19,22 @@ import Login from "./views/Login";
 import Nav from "./components/Nav";
 import Diary from "./views/Diary";
 import Statistics from "./views/Statistics";
-// https://os.ncuos.com/api/user/token
-// https://os.ncuos.com/api/user/profile/basic
+import { GeistProvider, CssBaseline } from "@geist-ui/react";
+import Home from "./views/Home";
+import axios from "axios";
+
+
+
 export default function App() {
   return (
     <Router>
       <div>
         <Switch>
-          <Route path="/login">
-            <Login />
+          <Route path="/diary">
+            <Diary Link={Link} Nav={Nav} />
           </Route>
-          <Route path="/upload">
-            <Upload />
+          <Route path="/home">
+            <Home Link={Link} Nav={Nav} />
           </Route>
           <Route path="/statistics">
             <Statistics Link={Link} Nav={Nav} />
@@ -39,7 +43,10 @@ export default function App() {
             <Topics />
           </Route>
           <Route path="/">
-            <Diary Link={Link} Nav={Nav} />
+            <GeistProvider>
+              <CssBaseline />
+              <Login />
+            </GeistProvider>
           </Route>
         </Switch>
       </div>
@@ -51,27 +58,11 @@ function Topics() {
   let match = useRouteMatch();
   return (
     <div>
-      <h2>Topics</h2>
-      <ul>
-        <li>
-          <Link to={`${match.url}/components`}>Components</Link>
-        </li>
-        <li>
-          <Link to={`${match.url}/props-v-state`}>Props v. State</Link>
-        </li>
-      </ul>
-
-      <Switch>
-        <Route path={match.path}>
-          <h3>Please select a topic.</h3>
-        </Route>
-      </Switch>
+      因为前端太弱 代开发
       <Nav Link={Link} />
     </div>
   );
 }
-
-
 
 function Upload() {
   const imageMaxSize = 1000000000; // bytes

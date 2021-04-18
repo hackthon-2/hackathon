@@ -12,7 +12,7 @@ function Nav({ Link }) {
     <footer className="Nav">
       <ul className="Navitems">
         <li className="Navitem">
-          <Link to="/" className="NavLink">
+          <Link to="/diary" className="NavLink">
             <i>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +97,7 @@ function Nav({ Link }) {
           </Link>
         </li>
         <li className="Navitem">
-          <Link to="/upload">
+          <Link to="/home">
             <i>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -10,7 +10,7 @@ body {
 .diaryBox {
     width              : 100vw;
     height             : 199vh;
-    background         : url("../../assets/diarybg.jpg") no-repeat fixed;
+    background         : url("../../assets/diarybg.png") no-repeat fixed;
     background-position: center;
     background-size    : cover;
 }
@@ -25,6 +25,7 @@ body {
     border-radius   : 12px;
     z-index         : 10;
     box-shadow      : 1px 1px 3px 1px rgb(179, 174, 174);
+    z-index: 100;
 }
 
 .addBox,

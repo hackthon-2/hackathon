@@ -6,6 +6,8 @@ import axios from "axios";
 import user from "../assets/user.svg";
 import pass from "../assets/pass.svg";
 import email from "../assets/email.svg";
+import { useToasts } from "@geist-ui/react";
+import { useHistory } from "react-router-dom";
 
 function Login(props) {
   const {
@@ -15,9 +17,10 @@ function Login(props) {
     formState: { errors },
     reset,
   } = useForm();
+  const history = useHistory();
   const [Status, setStatus] = useState(true);
   const [chooseStatus, setChooseStatus] = useState(true);
-
+  const [toasts, setToast] = useToasts();
   const onUpSubmit = (data) => {
     const { password, username, email } = data;
     let urlencoded = new URLSearchParams();
@@ -32,6 +35,7 @@ function Login(props) {
     })
       .then((res) => {
         console.log(res);
+        setToast({ text: "注册成功" });
       })
       .catch((err) => {
         console.log(err);
@@ -53,20 +57,14 @@ function Login(props) {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
     })
       .then((res) => {
-        console.log(res);
+        localStorage.setItem("token", "Bearer " + res.data.data.token);
+        setToast({ text: "登录成功" });
+        history.push("/diary");
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  //
-  // const Footer = styled.p`
-  //   position: absolute;
-  //   bottom: 10px;
-  //   color: #a79490;
-  //   font-weight: 200;
-  //   letter-spacing: 1px;
-  // `;
   const Err = styled.p`
     font-size: 12px;
     font-weight: 200;
@@ -74,7 +72,6 @@ function Login(props) {
   `;
   return (
     <div className="homeBox animate__animated animate__fadeInUp">
-      {/* 选择界面 */}
       {chooseStatus && Status ? (
         <div className="choose-form">
           <button
@@ -97,7 +94,6 @@ function Login(props) {
           </button>
         </div>
       ) : null}
-      {/* 登陆注册切换 */}
       {!chooseStatus ? (
         Status ? (
           <div className="signInBox animate__animated animate__fadeInUp">

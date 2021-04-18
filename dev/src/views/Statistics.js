@@ -13,12 +13,14 @@ function Statistics(props) {
   const [staCards, setStaCards] = useState([]);
   useEffect(() => {
     axios({
-      url: "/user/statistics",
+      url: "/user/statistics?time=2021-04-16",
       method: "get",
     }).then((res) => {
+      console.log(res.data.data);
       setStaCards(res.data.data);
+      console.log(staCards);
     });
-  });
+  }, []);
   return (
     <div
       style={{
@@ -36,7 +38,7 @@ function Statistics(props) {
           {staCards.map((staCard, index) => {
             return (
               <Stacard
-                key={staCard.todoItems[0].id}
+                key={staCard.header}
                 selectStatus={selectStatus}
                 setSelectStatus={setSelectStatus}
                 staCard={staCard}

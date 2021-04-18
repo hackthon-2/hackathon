@@ -5,9 +5,9 @@ import Diarytop from "../components/Diary/Diarytop";
 import Addcard from "../components/Diary/Addcard";
 import axios from "axios";
 import Diarybody from "../components/Diary/Diarybody";
-import 'animate.css';
+import "animate.css";
 
-function Diary(props) {
+export default function Diary(props) {
   const { Link, Nav } = props;
   //判断box区域是否需要模糊
   const [isFilter, setIsFilter] = useState(false);
@@ -29,28 +29,54 @@ function Diary(props) {
   const [todoItems, setTodoItems] = useState([]);
   // 所有盒子
   const [Boxs, setBoxs] = useState([]);
+
+  //用来解决登录进入页面 的报错（好像没解决但能用了 球球学长指点
+  const [isMobile, setIsMobile] = useState(false);
+
   let BOXS = [];
   useEffect(() => {
+    // const CancelToken = axios.CancelToken();
+    // const source = CancelToken.source();
+
+    // const loadDate = () => {
+    //   axios
+    //     .get("/user/diaryList", { cancelToken: source.token })
+    //     .then((data) => {
+    //       console.log(data);
+    //     });
+    // };
+
+    // loadDate();
+    // return () => {
+    //   source.cancel();
+    // };
     axios({
       url: "/user/todoList",
       method: "get",
     })
       .then((res) => {
         BOXS = BOXS.concat(res.data.data);
-      })
-      .then(() => {
         axios({
           url: "/user/diaryList",
           method: "get",
         }).then((res) => {
           setBoxs(BOXS.concat(res.data.data));
-          console.log(BOXS.concat(res.data.data));
         });
       })
       .catch((err) => console.log(err));
   }, []);
+  useEffect(() => {
+    window.onresize = () => {
+      document.documentElement.clientWidth < 760
+        ? setIsMobile(true)
+        : setIsMobile(false);
+    };
+    return () => {
+      window.onresize = null;
+    };
+  }, [setIsMobile]);
   return (
-    <div className="diaryBox" >
+    <div className="diaryBox">
       <div>
         <Diarytop
           setIsFilter={setIsFilter}
@@ -165,5 +191,3 @@ function Diary(props) {
     </div>
   );
 }
-
-export default Diary;

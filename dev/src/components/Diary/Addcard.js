@@ -77,6 +77,7 @@ function Card({
     setIsCard(false);
   };
   const handleSave = () => {
+    let box = [];
     let todayDate = dayjs().format("YYYY-MM-DD");
     if (typeStatus === "待办") {
       let dataTodo = {
@@ -95,8 +96,19 @@ function Card({
           method: "get",
         })
           .then((res) => {
-            Boxs.push(res.data.data)
-            setBoxs(Boxs);
+            axios({
+              url: "/user/todoList",
+              method: "get",
+            }).then((res) => {
+              box = box.concat(res.data.data);
+              axios({
+                url: "/user/diaryList",
+                method: "get",
+              }).then((res) => {
+                setBoxs(box.concat(res.data.data));
+                console.log(box.concat(res.data.data));
+              });
+            });
           })
           .catch((err) => console.log(err));
       });
@@ -112,12 +124,17 @@ function Card({
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       }).then((res) => {
         axios({
-          url: "/user/diaryList",
+          url: "/user/todoList",
           method: "get",
         }).then((res) => {
-          Boxs.push(res.data.data)
-          // res.data.data.forEach((box) => console.log(box));
-          setBoxs(Boxs);
+          box = box.concat(res.data.data);
+          axios({
+            url: "/user/diaryList",
+            method: "get",
+          }).then((res) => {
+            setBoxs(box.concat(res.data.data));
+            console.log(box.concat(res.data.data));
+          });
         });
       });
       // Boxs.push(box);
