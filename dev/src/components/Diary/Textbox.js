@@ -15,7 +15,7 @@ function Textbox({ question, text, id, setBoxs, isDlt, Boxs }) {
       .catch((err) => console.log(err));
   };
   return (
-    <div className="Box">
+    <div className="Box" onClick={()=>alert(123)}>
       <h2 className="header">{question}</h2>
       <div className="text-body">
         <p className="show-text">{text}</p>

@@ -32,6 +32,7 @@ function Diarybody({
                 id={box.id}
                 setBoxs={setBoxs}
                 Boxs={Boxs}
+                className="animate__animated animate__fadeInDown"
               />
             );
           } else {
@@ -44,6 +45,7 @@ function Diarybody({
                 setBoxs={setBoxs}
                 isDlt={isDlt}
                 Boxs={Boxs}
+                className="animate__animated animate__fadeInDown"
               />
             );
           }

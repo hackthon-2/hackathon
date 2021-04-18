@@ -1,7 +1,7 @@
 .homeBox {
     width                : 100vw;
     height               : 100vh;
-    /* background        : url('../assets/loginbg.png') no-repeat; */
+    background        : url('../assets/loginbg.png') no-repeat;
     background-size      : cover;
     /* display           : flex;
     justify-content      : center;

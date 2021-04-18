@@ -58,6 +58,7 @@ function Login(props) {
     })
       .then((res) => {
         localStorage.setItem("token", "Bearer " + res.data.data.token);
+        console.log("Bearer " + res.data.data.token);
         setToast({ text: "登录成功" });
         history.push("/diary");
       })

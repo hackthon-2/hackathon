@@ -15,7 +15,7 @@ function Todobox({ question, todoItems, isDlt, id, setBoxs, Boxs }) {
       .catch((err) => console.log(err));
   };
   return (
-    <div className="Box">
+    <div className="Box" onClick={()=>alert(123)}>
       <h2 className="header">{question}</h2>
       {todoItems.map((todoitem) => {
         const { id, item, isComplete } = todoitem;
